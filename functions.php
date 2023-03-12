@@ -92,3 +92,37 @@ function understrap_child_customize_controls_js() {
 	);
 }
 add_action( 'customize_controls_enqueue_scripts', 'understrap_child_customize_controls_js' );
+
+
+// Add support for the Building CPT to be the parent of the Apartment CPT
+
+function register_building_post_type() {
+    $args = array(
+        'labels' => array(
+            'name' => 'Building',
+            'singular_name' => 'Building'
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor', 'thumbnail' )
+    );
+    register_post_type( 'building', $args );
+}
+add_action( 'init', 'register_building_post_type' );
+
+function register_apartment_post_type() {
+    $args = array(
+        'labels' => array(
+            'name' => 'Apartment',
+            'singular_name' => 'Apartment'
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor', 'thumbnail' ),
+        'rewrite' => array( 'slug' => 'building/apartment' ),
+        'show_in_menu' => 'edit.php?post_type=building'
+    );
+    $args = apply_filters( 'register_post_type_args', $args, 'apartment' );
+    register_post_type( 'apartment', $args );
+}
+add_action( 'init', 'register_apartment_post_type' );
