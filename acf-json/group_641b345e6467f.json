@@ -242,6 +242,30 @@
                     "parent_repeater": "field_641b3c2281701"
                 }
             ]
+        },
+        {
+            "key": "field_641b74cf4a392",
+            "label": "Apartments",
+            "name": "apartments",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "apartment"
+            ],
+            "taxonomy": "",
+            "filters": "",
+            "return_format": "object",
+            "min": "",
+            "max": "",
+            "elements": ""
         }
     ],
     "location": [
@@ -264,5 +288,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1679509450
+    "modified": 1679521029
 }
