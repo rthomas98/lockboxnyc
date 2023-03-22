@@ -21,7 +21,6 @@
             ],
             "taxonomy": "",
             "filters": [
-                "search",
                 "post_type"
             ],
             "return_format": "object",
@@ -443,5 +442,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1679510871
+    "modified": 1679511184
 }
