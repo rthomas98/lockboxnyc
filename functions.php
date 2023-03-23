@@ -207,4 +207,36 @@ function restrict_agent_add_apartment($allcaps, $cap, $args) {
 }
 add_filter('user_has_cap', 'restrict_agent_add_apartment', 10, 3);
 
+// Dynamically populate the LL Code field on the Apartment CPT based on the LL Code field on the Building CPT
+function load_building_ll_code($value, $post_id, $field) {
+    if ($field['name'] == 'll_code' && get_post_type($post_id) == 'apartment') {
+        $building = get_field('building', $post_id); // Replace 'building' with the field name you used to create the relationship between "Building" and "Apartment" CPTs
+
+        if ($building) {
+            $building_id = $building->ID ?? $building[0]->ID; // Check if the building is an object or an array, and get the ID accordingly
+            $value = get_field('ll_code', $building_id);
+        }
+    }
+
+    return $value;
+}
+add_filter('acf/load_value', 'load_building_ll_code', 10, 3);
+
+// Dynamically populate the LL Code field on the Apartment CPT based on the LL Code field on the Building CPT
+
+function load_building_address($value, $post_id, $field) {
+    if ($field['name'] == 'office_address' && get_post_type($post_id) == 'apartment') {
+        $building = get_field('building', $post_id); // Replace 'building' with the field name you used to create the relationship between "Building" and "Apartment" CPTs
+
+        if ($building) {
+            $building_id = $building->ID ?? $building[0]->ID; // Check if the building is an object or an array, and get the ID accordingly
+            $value = get_field('office_address', $building_id);
+        }
+    }
+
+    return $value;
+}
+add_filter('acf/load_value', 'load_building_address', 10, 3);
+
+
 

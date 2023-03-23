@@ -8,7 +8,7 @@
             "name": "building",
             "aria-label": "",
             "type": "relationship",
-            "instructions": "",
+            "instructions": "Select the building that this unit belongs to.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -20,12 +20,10 @@
                 "building"
             ],
             "taxonomy": "",
-            "filters": [
-                "post_type"
-            ],
+            "filters": "",
             "return_format": "object",
-            "min": "",
-            "max": "",
+            "min": 1,
+            "max": 1,
             "elements": ""
         },
         {
@@ -55,6 +53,26 @@
             "ui": 0,
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_641b90971d2d5",
+            "label": "LL Code",
+            "name": "ll_code",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_641b3ed045128",
@@ -442,5 +460,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1679511184
+    "modified": 1679528454
 }
