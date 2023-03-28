@@ -15501,10 +15501,22 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
 .featured-apartment h2, .featured-apartment .h2 {
   color: #013780;
 }
+.featured-apartment .small-apartment .apartment-img {
+  position: relative;
+}
 .featured-apartment .small-apartment .apartment-img img {
   position: relative;
 }
-.featured-apartment .small-apartment .apartment-img img:before {
+.featured-apartment .small-apartment .apartment-img .price {
+  position: absolute;
+  bottom: 3%;
+  left: 3%;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  transition: all 0.8s;
+}
+.featured-apartment .small-apartment .apartment-img:before {
   content: "";
   position: absolute;
   top: 0;
@@ -15514,17 +15526,6 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
   transition: all 0.8s;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.5);
-}
-.featured-apartment .small-apartment .apartment-img .price {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  background-color: #F5BD02;
-  color: #013780;
-  font-size: 20px;
-  font-weight: 700;
-  transition: all 0.8s;
 }
 .featured-apartment .small-apartment .apartment-content h2, .featured-apartment .small-apartment .apartment-content .h2 {
   font-size: 20px;

@@ -67,7 +67,11 @@
                                         <a href="<?php the_permalink(); ?>">
                                             <?php the_post_thumbnail('featured-apartment'); ?>
                                         </a>
+                                        <div class="price">
+                                            <?php the_field( 'net_rent' ); ?>
+                                        </div>
                                     </div>
+
                                 <?php endif; ?>
                             <div class="apartment-content">
                                 <h2><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
