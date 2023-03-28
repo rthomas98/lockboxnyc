@@ -168,26 +168,6 @@ function restrict_agents_to_own_apartments($query) {
 }
 add_action('pre_get_posts', 'restrict_agents_to_own_apartments');
 
-// Add support for the Agent role to be able to edit Buildings
-function restrict_agent_building_editing($caps, $cap, $user_id, $args) {
-    $current_user = get_userdata($user_id);
-
-    if (in_array('agent', $current_user->roles)) {
-        if ('edit_post' == $cap || 'delete_post' == $cap) {
-            $post = get_post($args[0]);
-
-            if ('building' == $post->post_type) {
-                $caps[] = 'do_not_allow';
-            }
-        } elseif ('publish_posts' == $cap && 'building' == get_post_type()) {
-            $caps[] = 'do_not_allow';
-        }
-    }
-
-    return $caps;
-}
-add_filter('map_meta_cap', 'restrict_agent_building_editing', 10, 4);
-
 
 // Add support for the Agent role to be able to edit Apartments
 function restrict_agent_add_apartment($allcaps, $cap, $args) {
@@ -238,5 +218,89 @@ function load_building_address($value, $post_id, $field) {
 }
 add_filter('acf/load_value', 'load_building_address', 10, 3);
 
+// Add the custom column header to the Apartment CPT dashboard edit screen
+function add_ll_code_column($columns) {
+    $columns['ll_code'] = 'LL Code';
+    return $columns;
+}
+add_filter('manage_apartment_posts_columns', 'add_ll_code_column');
 
+// Fill the custom column with data from the associated Building CPT
+// Add the custom column headers to the Apartment CPT dashboard edit screen
+function add_custom_columns($columns) {
+    $columns['ll_code'] = 'LL Code';
+    $columns['office_address'] = 'Office Address';
+    return $columns;
+}
+add_filter('manage_apartment_posts_columns', 'add_custom_columns');
 
+// Fill the custom columns with data from the associated Building CPT
+function display_custom_column_data($column, $post_id) {
+    $building = get_field('building', $post_id); // Replace 'building' with the field name you used to create the relationship between "Building" and "Apartment" CPTs
+    if ($building) {
+        $building_id = $building->ID ?? $building[0]->ID; // Check if the building is an object or an array, and get the ID accordingly
+
+        if ($column == 'll_code') {
+            $ll_code = get_field('ll_code', $building_id);
+            echo $ll_code;
+        } elseif ($column == 'office_address') {
+            $office_address = get_field('office_address', $building_id);
+            echo $office_address;
+        }
+    }
+}
+add_action('manage_apartment_posts_custom_column', 'display_custom_column_data', 10, 2);
+
+// ACF Options Page
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title'    => 'Theme General Settings',
+        'menu_title'    => 'Theme Settings',
+        'menu_slug'     => 'theme-general-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Theme Footer Settings',
+        'menu_title'    => 'Footer',
+        'parent_slug'   => 'theme-general-settings',
+    ));
+
+}
+
+// Home search form
+
+function apartment_search_filter($query) {
+    if (!is_admin() && $query->is_main_query()) {
+        if ($query->is_search && isset($_GET['post_type']) && $_GET['post_type'] == 'apartment') {
+            $meta_query = array();
+
+            if (!empty($_GET['zip_code'])) {
+                $meta_query[] = array(
+                    'key' => 'zip_code',
+                    'value' => sanitize_text_field($_GET['zip_code']),
+                    'compare' => 'LIKE',
+                );
+            }
+
+            if (!empty($_GET['address'])) {
+                $meta_query[] = array(
+                    'key' => 'address',
+                    'value' => sanitize_text_field($_GET['address']),
+                    'compare' => 'LIKE',
+                );
+            }
+
+            if (count($meta_query) > 1) {
+                $meta_query['relation'] = 'AND';
+            }
+
+            if (count($meta_query) > 0) {
+                $query->set('meta_query', $meta_query);
+            }
+        }
+    }
+}
+add_action('pre_get_posts', 'apartment_search_filter');

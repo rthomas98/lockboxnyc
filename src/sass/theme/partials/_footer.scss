@@ -1,0 +1,87 @@
+.footer {
+  background-color: $dark-blue;
+
+  h2 {
+    color: $yellow;
+  }
+  h3 {
+    color: white;
+    font-size: 1.5rem;
+  }
+  p {
+    color: white;
+  }
+  a {
+    color: $light-blue;
+    text-decoration: none;
+
+    &:hover {
+      color: $yellow;
+    }
+  }
+
+  i {
+    color: white;
+    background-color: $yellow;
+    border-radius: 30%;
+    padding: 0.6rem;
+  }
+
+  address {
+    color: white;
+  }
+
+  hr {
+    background-color: #094784;
+    border: 2px solid #094784;
+  }
+
+  .copyright {
+    color: white;
+    background-color: #003363;
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+
+        &:hover {
+            color: $yellow;
+        }
+    }
+  }
+
+  form.fluent_form_2 .wpf_has_custom_css.ff-btn-submit {
+    background-color: $light-blue;
+    border: 1px solid $light-blue;
+    color: #ffffff;
+    min-width: 100%;
+    text-transform: uppercase;
+    border-radius: 0;
+
+    &:hover {
+      background-color: $yellow;
+      border-color: $yellow;
+      color: #ffffff;
+    }
+  }
+
+  .fluentform .ff-el-form-control {
+    background-clip: padding-box;
+    background-image: none;
+    border: 1px solid white;
+    border-radius: 0;
+    color: $black;
+    display: block;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 0;
+    max-width: 100%;
+    padding: 6px 12px;
+    width: 100%;
+  }
+
+}

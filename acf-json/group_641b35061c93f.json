@@ -3,6 +3,26 @@
     "title": "Apartment",
     "fields": [
         {
+            "key": "field_6422132c4822d",
+            "label": "Featured Post",
+            "name": "featured_post",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_641b49bcb26f0",
             "label": "Building",
             "name": "building",
@@ -480,5 +500,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1679532697
+    "modified": 1679954981
 }

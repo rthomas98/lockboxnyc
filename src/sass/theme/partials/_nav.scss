@@ -1,0 +1,37 @@
+.main-nav {
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        color: $black;
+        font-weight: 400;
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
+    .active {
+      .nav-link {
+        color: $yellow;
+        font-weight: 700;
+      }
+    }
+    .btn-primary {
+      text-transform: uppercase;
+      border-radius: 0;
+      background-color: $dark-blue;
+
+        &:hover {
+            background-color: $light-blue;
+            border-color: $light-blue;
+
+          .nav-link {
+            color: $black;
+          }
+        }
+
+      .nav-link {
+        color: $yellow !important;
+      }
+    }
+  }
+}

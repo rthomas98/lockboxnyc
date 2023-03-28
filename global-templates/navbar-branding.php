@@ -22,7 +22,7 @@ if ( ! has_custom_logo() ) { ?>
 	<?php else : ?>
 
 		<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" itemprop="url">
-			<?php bloginfo( 'name' ); ?>
+            <img class="" src="<?php echo get_stylesheet_directory_uri(); ?>/img/lb-logo.png" alt="Lockbox Reality logo">
 		</a>
 
 	<?php endif; ?>
